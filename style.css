@@ -704,6 +704,8 @@ img {
         repeat(3, 1fr);
 
     gap: 25px;
+
+    align-items: stretch;
 }
 
 .card-projeto {
@@ -723,6 +725,10 @@ img {
         rgba(0, 0, 0, 0.25);
 
     transition: var(--transicao);
+
+    display: flex;
+
+    flex-direction: column;
 }
 
 .card-projeto:hover {
@@ -745,6 +751,8 @@ img {
     position: relative;
 
     height: 220px;
+
+    flex-shrink: 0;
 
     background:
         linear-gradient(
@@ -769,6 +777,8 @@ img {
             rgba(255, 122, 0, 0.3),
             transparent 60%
         );
+
+    pointer-events: none;
 }
 
 .projeto-imagem.restaurante {
@@ -789,6 +799,45 @@ img {
         );
 }
 
+
+/* =========================================================
+   TECH MM
+   ========================================================= */
+
+.projeto-imagem.tech-mm {
+    background:
+        linear-gradient(
+            135deg,
+            #181818,
+            #0b0b0b
+        );
+}
+
+.projeto-imagem.tech-mm::before {
+    content: "TECH MM";
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--laranja);
+
+    font-size: 2rem;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    opacity: 0.18;
+
+    z-index: 1;
+}
+
 .projeto-imagem.projeto-futuro {
     background:
         repeating-linear-gradient(
@@ -805,7 +854,7 @@ img {
 
     inset: 0;
 
-    z-index: 2;
+    z-index: 3;
 
     display: flex;
 
@@ -843,6 +892,12 @@ img {
 
 .projeto-conteudo {
     padding: 28px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
 }
 
 .projeto-tag {
@@ -876,7 +931,11 @@ img {
 .botao-projeto {
     display: inline-flex;
 
-    margin-top: 22px;
+    align-items: center;
+
+    margin-top: auto;
+
+    padding-top: 22px;
 
     color: var(--laranja-claro);
 
@@ -1380,7 +1439,9 @@ img {
         grid-column:
             1 / -1;
 
-        max-width: 50%;
+        width: 100%;
+
+        max-width: 100%;
 
         margin: 0 auto;
     }
@@ -1404,7 +1465,6 @@ img {
 
         margin: 0 auto;
     }
-
 }
 
 
@@ -1478,4 +1538,167 @@ img {
     }
 
     .servicos-grid {
-        grid
+        grid-template-columns: 1fr;
+    }
+
+    .card-servico {
+        min-height: auto;
+    }
+
+    /* PROJETOS NO CELULAR */
+
+    .projetos-grid {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .card-projeto,
+    .card-projeto:last-child {
+        width: 100%;
+
+        max-width: 100%;
+
+        margin: 0;
+    }
+
+    .projeto-imagem {
+        height: 190px;
+    }
+
+    .projeto-conteudo {
+        padding: 23px;
+    }
+
+    .projeto-conteudo h3 {
+        font-size: 1.25rem;
+    }
+
+    .sobre-conteudo {
+        gap: 35px;
+    }
+
+    .destaque {
+        padding: 18px;
+
+        gap: 15px;
+    }
+
+    .cta {
+        padding:
+            60px 0;
+    }
+
+    .cta-conteudo {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 25px;
+    }
+
+    .cta .botao {
+        width: 100%;
+    }
+
+    .contato-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contato-card,
+    .contato-card:last-child {
+        grid-column: auto;
+
+        width: 100%;
+
+        max-width: 100%;
+
+        margin: 0;
+    }
+
+    .contato-card {
+        padding: 20px;
+    }
+
+    .contato-icone {
+        width: 52px;
+        height: 52px;
+
+        font-size: 1.5rem;
+    }
+
+    .rodape-conteudo {
+        flex-direction: column;
+
+        gap: 30px;
+    }
+
+    .rodape-links {
+        gap: 15px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .container {
+        width:
+            calc(100% - 22px);
+    }
+
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .logo span {
+        padding: 5px 8px;
+    }
+
+    .hero {
+        padding:
+            105px 0
+            60px;
+    }
+
+    .hero h1 {
+        font-size: 2.25rem;
+    }
+
+    .hero-card {
+        padding: 17px;
+    }
+
+    .codigo {
+        font-size: 0.72rem;
+    }
+
+    .codigo-recuo {
+        padding-left: 15px;
+    }
+
+    .projeto-imagem {
+        height: 170px;
+    }
+
+    .projeto-conteudo {
+        padding: 20px;
+    }
+
+    .projeto-conteudo h3 {
+        font-size: 1.18rem;
+    }
+
+    .contato-card {
+        gap: 13px;
+
+        padding: 17px;
+    }
+
+    .contato-card h3 {
+        font-size: 0.92rem;
+    }
+}
