@@ -1,18 +1,14 @@
+"use strict";
+
 // =========================================================
 // SCRIPT PRINCIPAL
 // MM SISTEMAS & TECNOLOGIA
-// =========================================================
-
-
-// =========================================================
-// CONFIGURAÇÕES
 // =========================================================
 
 const WHATSAPP = "5519981123401";
 
 const INSTAGRAM =
     "https://www.instagram.com/mmsistemasetecnologia/";
-
 
 // =========================================================
 // MENSAGENS DO WHATSAPP
@@ -42,7 +38,6 @@ function abrirWhatsApp(tipo = "contato") {
         `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
 
     window.open(url, "_blank");
-
 }
 
 
@@ -76,16 +71,19 @@ function configurarWhatsApp() {
 
     botoes.forEach(botao => {
 
-        botao.addEventListener("click", function (evento) {
+        botao.addEventListener(
+            "click",
+            function (evento) {
 
-            evento.preventDefault();
+                evento.preventDefault();
 
-            const tipo =
-                this.dataset.whatsapp || "contato";
+                const tipo =
+                    this.dataset.whatsapp || "contato";
 
-            abrirWhatsApp(tipo);
+                abrirWhatsApp(tipo);
 
-        });
+            }
+        );
 
     });
 
@@ -103,41 +101,37 @@ function configurarNavegacao() {
 
     links.forEach(link => {
 
-        link.addEventListener("click", function (evento) {
+        link.addEventListener(
+            "click",
+            function (evento) {
 
-            const destino =
-                this.getAttribute("href");
+                const destino =
+                    this.getAttribute("href");
 
-            if (
-                !destino ||
-                destino === "#" ||
-                this.hasAttribute("data-whatsapp")
-            ) {
+                if (
+                    !destino ||
+                    destino === "#" ||
+                    this.hasAttribute("data-whatsapp")
+                ) {
+                    return;
+                }
 
-                return;
+                const elemento =
+                    document.querySelector(destino);
+
+                if (!elemento) {
+                    return;
+                }
+
+                evento.preventDefault();
+
+                elemento.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
             }
-
-            const elemento =
-                document.querySelector(destino);
-
-            if (!elemento) {
-
-                return;
-
-            }
-
-            evento.preventDefault();
-
-            elemento.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "start"
-
-            });
-
-        });
+        );
 
     });
 
@@ -164,19 +158,19 @@ function configurarAnimacoes() {
         });
 
         return;
-
     }
 
     const observador =
         new IntersectionObserver(
-
             (entradas, observer) => {
 
                 entradas.forEach(entrada => {
 
                     if (entrada.isIntersecting) {
 
-                        entrada.target.classList.add("mostrar");
+                        entrada.target.classList.add(
+                            "mostrar"
+                        );
 
                         observer.unobserve(
                             entrada.target
@@ -187,13 +181,10 @@ function configurarAnimacoes() {
                 });
 
             },
-
             {
                 threshold: 0.15
             }
-
         );
-
 
     elementos.forEach(elemento => {
 
@@ -216,9 +207,7 @@ function configurarCabecalho() {
         document.querySelector(".cabecalho");
 
     if (!cabecalho) {
-
         return;
-
     }
 
     function verificarScroll() {
@@ -256,17 +245,20 @@ function configurarProjetos() {
 
     botoes.forEach(botao => {
 
-        botao.addEventListener("click", function () {
+        botao.addEventListener(
+            "click",
+            function () {
 
-            if (
-                this.classList.contains("desativado")
-            ) {
+                if (
+                    this.classList.contains("desativado")
+                ) {
 
-                return;
+                    return;
+
+                }
 
             }
-
-        });
+        );
 
     });
 
@@ -284,19 +276,19 @@ function configurarLogo() {
 
     logos.forEach(logo => {
 
-        logo.addEventListener("click", function (evento) {
+        logo.addEventListener(
+            "click",
+            function (evento) {
 
-            evento.preventDefault();
+                evento.preventDefault();
 
-            window.scrollTo({
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
 
-                top: 0,
-
-                behavior: "smooth"
-
-            });
-
-        });
+            }
+        );
 
     });
 
