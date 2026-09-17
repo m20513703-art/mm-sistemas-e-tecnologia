@@ -26,7 +26,6 @@ const MENSAGENS = {
     orcamento:
         "Olá! Vi a MM Sistemas & Tecnologia e gostaria de solicitar um orçamento para um projeto."
 
-
 };
 
 
@@ -57,8 +56,10 @@ function atualizarAno() {
         document.getElementById("anoAtual");
 
     if (elemento) {
+
         elemento.textContent =
             new Date().getFullYear();
+
     }
 
 }
@@ -112,21 +113,28 @@ function configurarNavegacao() {
                 destino === "#" ||
                 this.hasAttribute("data-whatsapp")
             ) {
+
                 return;
+
             }
 
             const elemento =
                 document.querySelector(destino);
 
             if (!elemento) {
+
                 return;
+
             }
 
             evento.preventDefault();
 
             elemento.scrollIntoView({
+
                 behavior: "smooth",
+
                 block: "start"
+
             });
 
         });
@@ -148,15 +156,20 @@ function configurarAnimacoes() {
         );
 
     if (!("IntersectionObserver" in window)) {
+
         elementos.forEach(elemento => {
+
             elemento.classList.add("mostrar");
+
         });
 
         return;
+
     }
 
     const observador =
         new IntersectionObserver(
+
             (entradas, observer) => {
 
                 entradas.forEach(entrada => {
@@ -174,9 +187,11 @@ function configurarAnimacoes() {
                 });
 
             },
+
             {
                 threshold: 0.15
             }
+
         );
 
 
@@ -201,7 +216,9 @@ function configurarCabecalho() {
         document.querySelector(".cabecalho");
 
     if (!cabecalho) {
+
         return;
+
     }
 
     function verificarScroll() {
@@ -244,7 +261,9 @@ function configurarProjetos() {
             if (
                 this.classList.contains("desativado")
             ) {
+
                 return;
+
             }
 
         });
@@ -270,8 +289,11 @@ function configurarLogo() {
             evento.preventDefault();
 
             window.scrollTo({
+
                 top: 0,
+
                 behavior: "smooth"
+
             });
 
         });
