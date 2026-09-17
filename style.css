@@ -1,39 +1,47 @@
 /* =========================================================
    MM SISTEMAS & TECNOLOGIA
-   DESIGN — PRETO + LARANJA
-   ========================================================= */
+   STYLE.CSS
+========================================================= */
+
+/* =========================================================
+   VARIÁVEIS
+========================================================= */
 
 :root {
+
     --preto: #080808;
     --preto-2: #101010;
     --preto-3: #171717;
+
     --cinza: #a9a9a9;
     --cinza-claro: #dddddd;
+
     --branco: #ffffff;
 
     --laranja: #ff7a00;
     --laranja-claro: #ff9d3d;
     --laranja-escuro: #d95f00;
 
-    --verde-whatsapp: #25d366;
-    --roxo-instagram: #c13584;
+    --whatsapp: #25d366;
+    --instagram: #e1306c;
 
-    --borda: rgba(255, 122, 0, 0.25);
+    --borda: rgba(255, 255, 255, 0.08);
 
     --container: 1180px;
+
     --raio: 18px;
 
     --sombra:
-        0 15px 45px rgba(0, 0, 0, 0.45);
+        0 20px 50px rgba(0, 0, 0, 0.35);
 
     --transicao:
-        0.3s ease;
+        all 0.3s ease;
 }
 
 
 /* =========================================================
    RESET
-   ========================================================= */
+========================================================= */
 
 * {
     margin: 0;
@@ -46,18 +54,13 @@ html {
 }
 
 body {
+
     font-family:
         Arial,
         Helvetica,
         sans-serif;
 
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(255, 122, 0, 0.12),
-            transparent 30%
-        ),
-        var(--preto);
+    background: var(--preto);
 
     color: var(--branco);
 
@@ -84,9 +87,10 @@ img {
 
 /* =========================================================
    CONTAINER
-   ========================================================= */
+========================================================= */
 
 .container {
+
     width: min(
         calc(100% - 40px),
         var(--container)
@@ -98,9 +102,10 @@ img {
 
 /* =========================================================
    CABEÇALHO
-   ========================================================= */
+========================================================= */
 
 .cabecalho {
+
     position: fixed;
 
     top: 0;
@@ -111,30 +116,31 @@ img {
     z-index: 1000;
 
     background:
-        rgba(8, 8, 8, 0.88);
-
-    backdrop-filter: blur(15px);
+        rgba(8, 8, 8, 0.92);
 
     border-bottom:
-        1px solid
-        rgba(255, 122, 0, 0.12);
+        1px solid transparent;
+
+    backdrop-filter: blur(12px);
 
     transition: var(--transicao);
 }
 
 .cabecalho.rolando {
+
     background:
         rgba(8, 8, 8, 0.97);
 
-    border-bottom-color:
-        rgba(255, 122, 0, 0.35);
+    border-bottom:
+        1px solid var(--borda);
 
     box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.5);
+        0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .cabecalho .container {
-    min-height: 76px;
+
+    min-height: 78px;
 
     display: flex;
 
@@ -148,53 +154,45 @@ img {
 
 /* =========================================================
    LOGO
-   ========================================================= */
+========================================================= */
 
 .logo {
+
     display: inline-flex;
 
     align-items: center;
 
-    gap: 8px;
+    gap: 7px;
 
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 
     font-weight: 800;
 
     letter-spacing: -0.5px;
 
-    transition: var(--transicao);
+    white-space: nowrap;
+
+    cursor: pointer;
 }
 
 .logo span {
-    color: var(--preto);
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--laranja-claro),
-            var(--laranja)
-        );
+    color: var(--laranja);
 
-    padding: 6px 9px;
-
-    border-radius: 9px;
-
-    box-shadow:
-        0 0 20px
-        rgba(255, 122, 0, 0.3);
+    font-weight: 900;
 }
 
-.logo:hover {
-    transform: translateY(-2px);
+.logo:hover span {
+    color: var(--laranja-claro);
 }
 
 
 /* =========================================================
    MENU
-   ========================================================= */
+========================================================= */
 
 .menu {
+
     display: flex;
 
     align-items: center;
@@ -203,6 +201,7 @@ img {
 }
 
 .menu a {
+
     position: relative;
 
     color: var(--cinza-claro);
@@ -215,14 +214,17 @@ img {
 }
 
 .menu a::after {
+
     content: "";
 
     position: absolute;
 
     left: 0;
+
     bottom: -7px;
 
     width: 0;
+
     height: 2px;
 
     background: var(--laranja);
@@ -231,43 +233,55 @@ img {
 }
 
 .menu a:hover {
-    color: var(--laranja-claro);
+
+    color: var(--branco);
 }
 
 .menu a:hover::after {
+
     width: 100%;
 }
 
 
 /* =========================================================
    HERO
-   ========================================================= */
+========================================================= */
 
 .hero {
+
     min-height: 100vh;
 
     padding:
-        150px 0
-        90px;
+        150px 0 90px;
 
     display: flex;
 
     align-items: center;
 
     background:
+
         radial-gradient(
-            circle at 15% 50%,
-            rgba(255, 122, 0, 0.15),
+            circle at 80% 20%,
+            rgba(255, 122, 0, 0.13),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 10% 80%,
+            rgba(255, 122, 0, 0.06),
             transparent 30%
-        );
+        ),
+
+        var(--preto);
 }
 
 .hero-conteudo {
+
     display: grid;
 
     grid-template-columns:
-        1.15fr
-        0.85fr;
+        minmax(0, 1.1fr)
+        minmax(360px, 0.9fr);
 
     align-items: center;
 
@@ -278,52 +292,69 @@ img {
     max-width: 700px;
 }
 
+
+/* =========================================================
+   TAG
+========================================================= */
+
 .tag {
+
     display: inline-flex;
 
-    padding: 7px 13px;
+    align-items: center;
+
+    padding:
+        8px 13px;
 
     border:
         1px solid
-        rgba(255, 122, 0, 0.4);
+        rgba(255, 122, 0, 0.35);
 
-    border-radius: 50px;
-
-    color: var(--laranja-claro);
+    border-radius: 999px;
 
     background:
         rgba(255, 122, 0, 0.08);
+
+    color: var(--laranja-claro);
 
     font-size: 0.78rem;
 
     font-weight: 800;
 
     letter-spacing: 1.5px;
+
+    margin-bottom: 22px;
 }
 
+
+/* =========================================================
+   HERO TEXTO
+========================================================= */
+
 .hero h1 {
-    margin-top: 22px;
 
     font-size:
-        clamp(2.6rem, 6vw, 5.2rem);
+        clamp(
+            2.7rem,
+            6vw,
+            5rem
+        );
 
     line-height: 1.02;
 
     letter-spacing: -3px;
+
+    margin-bottom: 25px;
 }
 
 .hero h1 strong {
+
     display: block;
 
     color: var(--laranja);
-
-    text-shadow:
-        0 0 35px
-        rgba(255, 122, 0, 0.2);
 }
 
-.hero p {
-    margin-top: 25px;
+.hero-texto > p {
 
     max-width: 650px;
 
@@ -332,24 +363,26 @@ img {
     font-size: 1.08rem;
 
     line-height: 1.8;
+
+    margin-bottom: 35px;
 }
 
 
 /* =========================================================
    BOTÕES
-   ========================================================= */
+========================================================= */
 
 .hero-botoes {
+
     display: flex;
 
     flex-wrap: wrap;
 
-    gap: 15px;
-
-    margin-top: 35px;
+    gap: 14px;
 }
 
 .botao {
+
     display: inline-flex;
 
     align-items: center;
@@ -359,125 +392,132 @@ img {
     min-height: 52px;
 
     padding:
-        0 25px;
+        0 24px;
 
     border-radius: 12px;
 
     font-weight: 800;
 
-    transition:
-        transform var(--transicao),
-        box-shadow var(--transicao),
-        background var(--transicao);
+    transition: var(--transicao);
+
+    cursor: pointer;
 }
 
 .botao-principal {
-    color: var(--preto);
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--laranja-claro),
-            var(--laranja)
-        );
+    background: var(--laranja);
+
+    color: var(--preto);
 
     box-shadow:
         0 10px 30px
-        rgba(255, 122, 0, 0.22);
+        rgba(255, 122, 0, 0.2);
 }
 
 .botao-principal:hover {
-    transform: translateY(-4px);
+
+    background: var(--laranja-claro);
+
+    transform:
+        translateY(-3px);
 
     box-shadow:
-        0 15px 40px
-        rgba(255, 122, 0, 0.4);
+        0 15px 35px
+        rgba(255, 122, 0, 0.3);
 }
 
 .botao-secundario {
-    color: var(--branco);
 
     border:
         1px solid
-        rgba(255, 122, 0, 0.45);
+        rgba(255, 255, 255, 0.15);
 
     background:
-        rgba(255, 122, 0, 0.05);
+        rgba(255, 255, 255, 0.03);
+
+    color: var(--branco);
 }
 
 .botao-secundario:hover {
-    color: var(--laranja-claro);
 
-    background:
-        rgba(255, 122, 0, 0.12);
+    border-color:
+        var(--laranja);
 
-    border-color: var(--laranja);
+    color:
+        var(--laranja);
 
-    transform: translateY(-4px);
+    transform:
+        translateY(-3px);
 }
 
 
 /* =========================================================
    CARD DE CÓDIGO
-   ========================================================= */
+========================================================= */
 
 .hero-card {
+
     position: relative;
-
-    padding: 25px;
-
-    border:
-        1px solid
-        rgba(255, 122, 0, 0.3);
-
-    border-radius: 20px;
 
     background:
         linear-gradient(
             145deg,
             #151515,
-            #0b0b0b
+            #0c0c0c
         );
 
+    border:
+        1px solid
+        var(--borda);
+
+    border-radius:
+        22px;
+
     box-shadow:
-        var(--sombra),
-        0 0 60px
-        rgba(255, 122, 0, 0.08);
+        var(--sombra);
 
     overflow: hidden;
+
+    transform:
+        rotate(1deg);
+
+    transition:
+        var(--transicao);
 }
 
-.hero-card::before {
-    content: "";
+.hero-card:hover {
 
-    position: absolute;
-
-    width: 180px;
-    height: 180px;
-
-    top: -90px;
-    right: -90px;
-
-    background: var(--laranja);
-
-    border-radius: 50%;
-
-    filter: blur(90px);
-
-    opacity: 0.18;
+    transform:
+        rotate(0deg)
+        translateY(-5px);
 }
 
 .codigo-topo {
+
+    height: 45px;
+
     display: flex;
+
+    align-items: center;
 
     gap: 7px;
 
-    margin-bottom: 25px;
+    padding:
+        0 18px;
+
+    border-bottom:
+        1px solid
+        var(--borda);
+
+    background:
+        rgba(255, 255, 255, 0.025);
 }
 
 .codigo-topo span {
-    width: 11px;
-    height: 11px;
+
+    width: 10px;
+
+    height: 10px;
 
     border-radius: 50%;
 
@@ -485,888 +525,1269 @@ img {
         #555;
 }
 
-.codigo-topo span:first-child {
-    background: var(--laranja);
+.codigo-topo span:nth-child(1) {
+    background: #ff5f57;
+}
+
+.codigo-topo span:nth-child(2) {
+    background: #febc2e;
+}
+
+.codigo-topo span:nth-child(3) {
+    background: #28c840;
 }
 
 .codigo {
+
+    padding:
+        35px 30px 40px;
+
     font-family:
         "Courier New",
         monospace;
 
-    font-size: 1rem;
+    color:
+        var(--cinza-claro);
 
-    color: #bdbdbd;
-
-    line-height: 2;
+    font-size:
+        1rem;
 }
 
-.codigo span {
-    color: var(--laranja);
+.codigo p {
+    margin-bottom: 14px;
+}
+
+.codigo > p:first-child,
+.codigo > p:last-child {
+
+    color:
+        var(--laranja);
 }
 
 .codigo b {
-    color: var(--laranja-claro);
+
+    color:
+        #8bd5ff;
+
+    font-weight:
+        600;
 }
 
 .codigo-recuo {
-    padding-left: 25px;
+
+    padding-left:
+        25px;
+
+    color:
+        var(--cinza);
 }
 
 
 /* =========================================================
    SEÇÕES
-   ========================================================= */
+========================================================= */
 
 .secao {
+
     padding:
         110px 0;
-
-    border-top:
-        1px solid
-        rgba(255, 255, 255, 0.04);
 }
 
-.secao:nth-child(even) {
+.secao:nth-of-type(even) {
+
     background:
-        rgba(255, 122, 0, 0.015);
+        var(--preto-2);
 }
 
 
 /* =========================================================
-   TÍTULOS
-   ========================================================= */
+   TÍTULO DAS SEÇÕES
+========================================================= */
 
 .titulo-secao {
-    max-width: 720px;
+
+    max-width:
+        750px;
 
     margin:
         0 auto 55px;
 
-    text-align: center;
+    text-align:
+        center;
 }
 
-.titulo-secao span {
-    color: var(--laranja);
+.titulo-secao > span {
 
-    font-size: 0.78rem;
+    color:
+        var(--laranja);
 
-    font-weight: 800;
+    font-size:
+        0.78rem;
 
-    letter-spacing: 2px;
+    font-weight:
+        900;
+
+    letter-spacing:
+        2px;
 }
 
 .titulo-secao h2 {
-    margin-top: 12px;
+
+    margin-top:
+        12px;
+
+    margin-bottom:
+        15px;
 
     font-size:
-        clamp(2rem, 4vw, 3.2rem);
+        clamp(
+            2rem,
+            4vw,
+            3rem
+        );
 
-    line-height: 1.1;
+    line-height:
+        1.15;
 
-    letter-spacing: -1.5px;
+    letter-spacing:
+        -1.5px;
 }
 
 .titulo-secao p {
-    margin-top: 17px;
 
-    color: var(--cinza);
+    color:
+        var(--cinza);
 
-    font-size: 1rem;
+    font-size:
+        1rem;
 }
 
 
 /* =========================================================
    SERVIÇOS
-   ========================================================= */
+========================================================= */
 
 .servicos-grid {
-    display: grid;
+
+    display:
+        grid;
 
     grid-template-columns:
         repeat(4, 1fr);
 
-    gap: 20px;
+    gap:
+        20px;
 }
 
 .card-servico {
-    position: relative;
 
-    padding: 30px 25px;
+    position:
+        relative;
 
-    min-height: 250px;
+    padding:
+        30px 25px;
+
+    background:
+        var(--preto-3);
 
     border:
         1px solid
-        rgba(255, 122, 0, 0.14);
+        var(--borda);
 
-    border-radius: var(--raio);
+    border-radius:
+        var(--raio);
 
-    background:
-        linear-gradient(
-            145deg,
-            #151515,
-            #0e0e0e
-        );
+    transition:
+        var(--transicao);
 
-    transition: var(--transicao);
-
-    overflow: hidden;
+    overflow:
+        hidden;
 }
 
 .card-servico::before {
-    content: "";
 
-    position: absolute;
+    content:
+        "";
 
-    left: 0;
-    top: 0;
+    position:
+        absolute;
 
-    width: 100%;
-    height: 3px;
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        3px;
 
     background:
-        linear-gradient(
-            90deg,
-            var(--laranja),
-            transparent
-        );
+        var(--laranja);
+
+    transform:
+        scaleX(0);
+
+    transform-origin:
+        left;
+
+    transition:
+        var(--transicao);
 }
 
 .card-servico:hover {
-    transform: translateY(-8px);
+
+    transform:
+        translateY(-8px);
 
     border-color:
-        rgba(255, 122, 0, 0.5);
+        rgba(255, 122, 0, 0.3);
 
     box-shadow:
-        0 20px 50px
-        rgba(0, 0, 0, 0.45),
-        0 0 30px
-        rgba(255, 122, 0, 0.08);
+        var(--sombra);
+}
+
+.card-servico:hover::before {
+
+    transform:
+        scaleX(1);
 }
 
 .icone {
-    width: 55px;
-    height: 55px;
 
-    display: flex;
+    width:
+        55px;
 
-    align-items: center;
-    justify-content: center;
+    height:
+        55px;
 
-    margin-bottom: 22px;
+    display:
+        flex;
 
-    border-radius: 14px;
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        14px;
 
     background:
-        rgba(255, 122, 0, 0.12);
+        rgba(255, 122, 0, 0.1);
 
-    border:
-        1px solid
-        rgba(255, 122, 0, 0.25);
+    font-size:
+        1.6rem;
 
-    font-size: 1.5rem;
+    margin-bottom:
+        22px;
 }
 
 .card-servico h3 {
-    font-size: 1.15rem;
 
-    margin-bottom: 12px;
+    font-size:
+        1.15rem;
+
+    margin-bottom:
+        10px;
 }
 
 .card-servico p {
-    color: var(--cinza);
 
-    font-size: 0.92rem;
+    color:
+        var(--cinza);
 
-    line-height: 1.7;
+    font-size:
+        0.93rem;
+
+    line-height:
+        1.7;
 }
 
 
 /* =========================================================
    PROJETOS
-   ========================================================= */
+========================================================= */
 
 .secao-projetos {
+
     background:
-        linear-gradient(
-            180deg,
-            #0c0c0c,
-            #111111
-        );
+        var(--preto-2);
 }
 
 .projetos-grid {
-    display: grid;
+
+    display:
+        grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 25px;
+    gap:
+        24px;
 
-    align-items: stretch;
+    align-items:
+        stretch;
 }
 
 .card-projeto {
-    overflow: hidden;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    background:
+        var(--preto-3);
 
     border:
         1px solid
-        rgba(255, 122, 0, 0.16);
+        var(--borda);
 
-    border-radius: var(--raio);
+    border-radius:
+        var(--raio);
 
-    background:
-        #121212;
+    overflow:
+        hidden;
 
-    box-shadow:
-        0 15px 45px
-        rgba(0, 0, 0, 0.25);
-
-    transition: var(--transicao);
-
-    display: flex;
-
-    flex-direction: column;
+    transition:
+        var(--transicao);
 }
 
 .card-projeto:hover {
-    transform: translateY(-8px);
+
+    transform:
+        translateY(-8px);
 
     border-color:
-        rgba(255, 122, 0, 0.5);
+        rgba(255, 122, 0, 0.3);
 
     box-shadow:
-        0 25px 60px
-        rgba(0, 0, 0, 0.5);
+        var(--sombra);
 }
 
 
 /* =========================================================
-   IMAGENS DOS PROJETOS
-   ========================================================= */
+   IMAGEM DOS PROJETOS
+========================================================= */
 
 .projeto-imagem {
-    position: relative;
 
-    height: 220px;
+    position:
+        relative;
 
-    flex-shrink: 0;
+    height:
+        220px;
+
+    overflow:
+        hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #3b1807,
+            #120a05
+        );
+}
+
+.projeto-imagem::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 20%,
+            rgba(0, 0, 0, 0.65)
+        );
+
+    z-index:
+        1;
+}
+
+
+/* =========================================================
+   PROJETO RESTAURANTE
+========================================================= */
+
+.projeto-imagem.restaurante {
+
+    background:
+        linear-gradient(
+            135deg,
+            #6d2c08,
+            #1b0d04
+        );
+}
+
+
+/* =========================================================
+   PROJETO PADARIA
+========================================================= */
+
+.projeto-imagem.padaria {
+
+    background:
+        linear-gradient(
+            135deg,
+            #5c3215,
+            #1a0d06
+        );
+}
+
+
+/* =========================================================
+   PROJETO TECH MM
+========================================================= */
+
+.projeto-imagem.tech-mm {
+
+    background:
+        linear-gradient(
+            135deg,
+            #101010,
+            #202020
+        );
+}
+
+.projeto-imagem.tech-mm::before {
+
+    content:
+        "TECH MM";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color:
+        var(--laranja);
+
+    font-size:
+        2rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        3px;
+
+    opacity:
+        0.25;
+
+    z-index:
+        1;
+}
+
+
+/* =========================================================
+   PROJETO FOTOGRAFIA
+========================================================= */
+
+.projeto-imagem.fotografia {
 
     background:
         linear-gradient(
             135deg,
             #242424,
-            #101010
-        );
-
-    overflow: hidden;
-}
-
-.projeto-imagem::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255, 122, 0, 0.3),
-            transparent 60%
-        );
-
-    pointer-events: none;
-}
-
-.projeto-imagem.restaurante {
-    background:
-        linear-gradient(
-            135deg,
-            #22160c,
-            #0d0d0d
+            #090909
         );
 }
 
-.projeto-imagem.padaria {
-    background:
-        linear-gradient(
-            135deg,
-            #1f140a,
-            #0d0d0d
-        );
+.projeto-imagem.fotografia::before {
+
+    content:
+        "LUZ & MEMÓRIA";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color:
+        #ffffff;
+
+    font-size:
+        1.55rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2px;
+
+    opacity:
+        0.22;
+
+    z-index:
+        1;
 }
 
 
 /* =========================================================
-   TECH MM
-   ========================================================= */
+   PROJETO CLIMATIZAÇÃO
+========================================================= */
 
-.projeto-imagem.tech-mm {
+.projeto-imagem.climatizacao {
+
     background:
         linear-gradient(
             135deg,
-            #181818,
-            #0b0b0b
+            #0b2945,
+            #081018
         );
 }
 
-.projeto-imagem.tech-mm::before {
-    content: "TECH MM";
+.projeto-imagem.climatizacao::before {
 
-    position: absolute;
+    content:
+        "CLIMATIZAÇÃO";
 
-    inset: 0;
+    position:
+        absolute;
 
-    display: flex;
+    inset:
+        0;
 
-    align-items: center;
-    justify-content: center;
+    display:
+        flex;
 
-    color: var(--laranja);
+    align-items:
+        center;
 
-    font-size: 2rem;
+    justify-content:
+        center;
 
-    font-weight: 900;
+    color:
+        #4da3ff;
 
-    letter-spacing: 2px;
+    font-size:
+        1.65rem;
 
-    opacity: 0.18;
+    font-weight:
+        900;
 
-    z-index: 1;
+    letter-spacing:
+        2px;
+
+    opacity:
+        0.24;
+
+    z-index:
+        1;
 }
 
-.projeto-imagem.projeto-futuro {
-    background:
-        repeating-linear-gradient(
-            45deg,
-            #151515,
-            #151515 10px,
-            #111111 10px,
-            #111111 20px
-        );
-}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
 
 .projeto-overlay {
-    position: absolute;
 
-    inset: 0;
+    position:
+        absolute;
 
-    z-index: 3;
+    inset:
+        0;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    z-index:
+        2;
+
+    opacity:
+        0;
+
+    transition:
+        var(--transicao);
+}
+
+.card-projeto:hover
+.projeto-overlay {
+
+    opacity:
+        1;
 }
 
 .projeto-overlay span {
-    padding: 9px 15px;
+
+    padding:
+        9px 14px;
 
     border:
         1px solid
-        rgba(255, 122, 0, 0.5);
+        rgba(255, 255, 255, 0.2);
 
-    border-radius: 50px;
+    border-radius:
+        999px;
 
     background:
-        rgba(0, 0, 0, 0.55);
+        rgba(0, 0, 0, 0.65);
 
-    color: var(--laranja-claro);
+    color:
+        var(--branco);
 
-    font-size: 0.75rem;
+    font-size:
+        0.72rem;
 
-    font-weight: 800;
+    font-weight:
+        900;
 
-    letter-spacing: 1.5px;
+    letter-spacing:
+        1.5px;
 
-    backdrop-filter: blur(8px);
+    backdrop-filter:
+        blur(8px);
 }
 
 
 /* =========================================================
    CONTEÚDO DOS PROJETOS
-   ========================================================= */
+========================================================= */
 
 .projeto-conteudo {
-    padding: 28px;
 
-    display: flex;
+    display:
+        flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    flex: 1;
+    flex:
+        1;
+
+    padding:
+        27px;
 }
 
 .projeto-tag {
-    color: var(--laranja);
 
-    font-size: 0.72rem;
+    display:
+        inline-block;
 
-    font-weight: 800;
+    color:
+        var(--laranja);
 
-    letter-spacing: 1.5px;
+    font-size:
+        0.72rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        1.3px;
+
+    margin-bottom:
+        10px;
 }
 
 .projeto-conteudo h3 {
-    margin-top: 10px;
 
-    font-size: 1.35rem;
+    font-size:
+        1.25rem;
 
-    line-height: 1.25;
+    line-height:
+        1.3;
+
+    margin-bottom:
+        12px;
 }
 
 .projeto-conteudo p {
-    margin-top: 13px;
 
-    color: var(--cinza);
+    color:
+        var(--cinza);
 
-    font-size: 0.9rem;
+    font-size:
+        0.92rem;
 
-    line-height: 1.7;
+    line-height:
+        1.7;
+
+    margin-bottom:
+        24px;
 }
 
 .botao-projeto {
-    display: inline-flex;
 
-    align-items: center;
+    display:
+        inline-flex;
 
-    margin-top: auto;
+    align-items:
+        center;
 
-    padding-top: 22px;
+    justify-content:
+        center;
 
-    color: var(--laranja-claro);
+    width:
+        fit-content;
 
-    font-weight: 800;
+    margin-top:
+        auto;
 
-    transition: var(--transicao);
+    padding:
+        10px 16px;
+
+    border:
+        1px solid
+        rgba(255, 122, 0, 0.35);
+
+    border-radius:
+        10px;
+
+    color:
+        var(--laranja);
+
+    font-size:
+        0.88rem;
+
+    font-weight:
+        800;
+
+    transition:
+        var(--transicao);
 }
 
 .botao-projeto:hover {
-    color: var(--branco);
 
-    transform: translateX(5px);
+    background:
+        var(--laranja);
+
+    color:
+        var(--preto);
+
+    transform:
+        translateX(4px);
 }
 
 .botao-projeto.desativado {
-    color: #666;
 
-    cursor: default;
-}
+    opacity:
+        0.45;
 
-.botao-projeto.desativado:hover {
-    color: #666;
-
-    transform: none;
+    pointer-events:
+        none;
 }
 
 
 /* =========================================================
    SOBRE
-   ========================================================= */
+========================================================= */
 
 .sobre-conteudo {
-    display: grid;
+
+    display:
+        grid;
 
     grid-template-columns:
-        1fr
-        1fr;
+        1fr 1fr;
 
-    gap: 80px;
+    gap:
+        80px;
 
-    align-items: center;
+    align-items:
+        center;
 }
 
 .sobre-texto h2 {
-    margin-top: 18px;
 
     font-size:
-        clamp(2rem, 4vw, 3.1rem);
+        clamp(
+            2rem,
+            4vw,
+            3rem
+        );
 
-    line-height: 1.1;
+    line-height:
+        1.15;
+
+    letter-spacing:
+        -1.5px;
+
+    margin-bottom:
+        22px;
 }
 
 .sobre-texto p {
-    margin-top: 20px;
 
-    color: var(--cinza);
+    color:
+        var(--cinza);
 
-    line-height: 1.8;
+    line-height:
+        1.8;
+
+    margin-bottom:
+        18px;
 }
 
 .sobre-destaques {
-    display: flex;
 
-    flex-direction: column;
+    display:
+        flex;
 
-    gap: 15px;
+    flex-direction:
+        column;
+
+    gap:
+        16px;
 }
 
 .destaque {
-    display: flex;
 
-    gap: 20px;
+    display:
+        flex;
 
-    padding: 22px;
+    gap:
+        18px;
+
+    padding:
+        22px;
 
     border:
         1px solid
-        rgba(255, 122, 0, 0.14);
+        var(--borda);
 
-    border-radius: 15px;
+    border-radius:
+        var(--raio);
 
     background:
-        #111111;
+        var(--preto-3);
 
-    transition: var(--transicao);
+    transition:
+        var(--transicao);
 }
 
 .destaque:hover {
-    border-color:
-        rgba(255, 122, 0, 0.45);
 
-    transform: translateX(5px);
+    transform:
+        translateX(6px);
+
+    border-color:
+        rgba(255, 122, 0, 0.25);
 }
 
 .destaque > strong {
-    color: var(--laranja);
 
-    font-size: 1.2rem;
+    color:
+        var(--laranja);
+
+    font-size:
+        1.1rem;
 }
 
 .destaque h3 {
-    font-size: 1rem;
+
+    font-size:
+        1rem;
+
+    margin-bottom:
+        5px;
 }
 
 .destaque p {
-    margin-top: 5px;
 
-    color: var(--cinza);
+    color:
+        var(--cinza);
 
-    font-size: 0.88rem;
+    font-size:
+        0.88rem;
+
+    line-height:
+        1.6;
 }
 
 
 /* =========================================================
    CTA
-   ========================================================= */
+========================================================= */
 
 .cta {
+
     padding:
-        80px 0;
+        75px 0;
 
     background:
         linear-gradient(
             135deg,
-            #ff7a00,
-            #d95f00
+            #1d0e04,
+            #0d0d0d
         );
 
-    color: var(--preto);
+    border-top:
+        1px solid
+        rgba(255, 122, 0, 0.15);
+
+    border-bottom:
+        1px solid
+        rgba(255, 122, 0, 0.15);
 }
 
 .cta-conteudo {
-    display: flex;
 
-    align-items: center;
+    display:
+        flex;
 
-    justify-content: space-between;
+    align-items:
+        center;
 
-    gap: 40px;
+    justify-content:
+        space-between;
+
+    gap:
+        30px;
 }
 
-.cta span {
-    font-size: 0.75rem;
+.cta-conteudo > div {
 
-    font-weight: 900;
+    max-width:
+        750px;
+}
 
-    letter-spacing: 2px;
+.cta-conteudo span {
+
+    color:
+        var(--laranja);
+
+    font-size:
+        0.75rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        2px;
 }
 
 .cta h2 {
-    max-width: 700px;
-
-    margin-top: 8px;
 
     font-size:
-        clamp(2rem, 4vw, 3.2rem);
+        clamp(
+            1.8rem,
+            4vw,
+            2.8rem
+        );
 
-    line-height: 1.05;
+    line-height:
+        1.2;
+
+    margin:
+        10px 0;
 }
 
 .cta p {
-    margin-top: 12px;
 
-    opacity: 0.75;
-}
-
-.cta .botao-principal {
-    flex-shrink: 0;
-
-    background: var(--preto);
-
-    color: var(--branco);
-
-    box-shadow:
-        0 12px 30px
-        rgba(0, 0, 0, 0.25);
-}
-
-.cta .botao-principal:hover {
-    background: #151515;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0, 0, 0, 0.35);
+    color:
+        var(--cinza);
 }
 
 
 /* =========================================================
    CONTATO
-   ========================================================= */
+========================================================= */
 
 .contato {
+
     background:
-        #090909;
+        var(--preto);
 }
 
 .contato-grid {
-    display: grid;
+
+    display:
+        grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 20px;
+    gap:
+        20px;
 }
 
 .contato-card {
-    position: relative;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 18px;
+    gap:
+        18px;
 
-    padding: 25px;
+    padding:
+        25px;
 
-    min-height: 125px;
+    background:
+        var(--preto-3);
 
     border:
         1px solid
-        rgba(255, 255, 255, 0.08);
+        var(--borda);
 
-    border-radius: 18px;
+    border-radius:
+        var(--raio);
 
-    background:
-        linear-gradient(
-            145deg,
-            #151515,
-            #0e0e0e
-        );
-
-    transition: var(--transicao);
-
-    overflow: hidden;
+    transition:
+        var(--transicao);
 }
 
 .contato-card:hover {
-    transform: translateY(-7px);
+
+    transform:
+        translateY(-6px);
 
     border-color:
-        rgba(255, 122, 0, 0.5);
+        rgba(255, 122, 0, 0.3);
 
     box-shadow:
-        0 20px 45px
-        rgba(0, 0, 0, 0.45);
+        var(--sombra);
 }
 
 .contato-icone {
-    width: 58px;
-    height: 58px;
 
-    flex-shrink: 0;
+    width:
+        52px;
 
-    display: flex;
+    height:
+        52px;
 
-    align-items: center;
-    justify-content: center;
+    flex-shrink:
+        0;
 
-    border-radius: 16px;
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        14px;
 
     background:
         rgba(255, 122, 0, 0.1);
 
-    font-size: 1.7rem;
+    font-size:
+        1.45rem;
 }
 
 .contato-card span {
-    color: var(--laranja);
 
-    font-size: 0.7rem;
+    color:
+        var(--laranja);
 
-    font-weight: 900;
+    font-size:
+        0.7rem;
 
-    letter-spacing: 1.5px;
+    font-weight:
+        900;
+
+    letter-spacing:
+        1.5px;
 }
 
 .contato-card h3 {
-    margin-top: 3px;
 
-    font-size: 1.02rem;
+    font-size:
+        1rem;
+
+    margin:
+        3px 0;
 }
 
 .contato-card p {
-    margin-top: 3px;
 
-    color: var(--cinza);
+    color:
+        var(--cinza);
 
-    font-size: 0.82rem;
+    font-size:
+        0.83rem;
 }
 
 
 /* =========================================================
-   DESTAQUE ESPECIAL WHATSAPP
-   ========================================================= */
-
-.contato-card[data-whatsapp] {
-    border-color:
-        rgba(37, 211, 102, 0.3);
-}
-
-.contato-card[data-whatsapp] .contato-icone {
-    background:
-        rgba(37, 211, 102, 0.12);
-
-    border:
-        1px solid
-        rgba(37, 211, 102, 0.3);
-}
+   WHATSAPP
+========================================================= */
 
 .contato-card[data-whatsapp]:hover {
-    border-color:
-        rgba(37, 211, 102, 0.7);
 
-    box-shadow:
-        0 20px 45px
-        rgba(37, 211, 102, 0.08);
+    border-color:
+        rgba(37, 211, 102, 0.4);
+}
+
+.contato-card[data-whatsapp]
+.contato-icone {
+
+    background:
+        rgba(37, 211, 102, 0.1);
 }
 
 
 /* =========================================================
    INSTAGRAM
-   ========================================================= */
-
-.contato-card[href*="instagram"] {
-    border-color:
-        rgba(193, 53, 132, 0.3);
-}
-
-.contato-card[href*="instagram"] .contato-icone {
-    background:
-        rgba(193, 53, 132, 0.12);
-
-    border:
-        1px solid
-        rgba(193, 53, 132, 0.3);
-}
+========================================================= */
 
 .contato-card[href*="instagram"]:hover {
-    border-color:
-        rgba(193, 53, 132, 0.7);
 
-    box-shadow:
-        0 20px 45px
-        rgba(193, 53, 132, 0.08);
+    border-color:
+        rgba(225, 48, 108, 0.4);
+}
+
+.contato-card[href*="instagram"]
+.contato-icone {
+
+    background:
+        rgba(225, 48, 108, 0.1);
 }
 
 
 /* =========================================================
    RODAPÉ
-   ========================================================= */
+========================================================= */
 
 .rodape {
-    padding-top: 55px;
 
-    background: #050505;
+    background:
+        #050505;
 
     border-top:
         1px solid
-        rgba(255, 122, 0, 0.15);
+        var(--borda);
 }
 
 .rodape-conteudo {
-    display: flex;
 
-    justify-content: space-between;
+    display:
+        flex;
 
-    gap: 50px;
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    gap:
+        50px;
+
+    padding:
+        55px 0;
 }
 
-.rodape .logo {
-    margin-bottom: 15px;
-}
+.rodape-conteudo p {
 
-.rodape p {
-    max-width: 400px;
+    max-width:
+        380px;
 
-    color: #777;
+    color:
+        var(--cinza);
 
-    font-size: 0.9rem;
+    font-size:
+        0.9rem;
+
+    margin-top:
+        14px;
 }
 
 .rodape-links {
-    display: flex;
 
-    flex-wrap: wrap;
+    display:
+        flex;
 
-    align-items: flex-start;
+    flex-wrap:
+        wrap;
 
-    gap: 20px;
+    gap:
+        20px;
 }
 
 .rodape-links a {
-    color: #999;
 
-    font-size: 0.88rem;
+    color:
+        var(--cinza-claro);
 
-    transition: var(--transicao);
+    font-size:
+        0.88rem;
+
+    transition:
+        var(--transicao);
 }
 
 .rodape-links a:hover {
-    color: var(--laranja);
+
+    color:
+        var(--laranja);
 }
 
 .rodape-final {
-    margin-top: 45px;
 
     padding:
-        20px;
+        22px 20px;
 
-    text-align: center;
+    text-align:
+        center;
 
     border-top:
         1px solid
-        rgba(255, 255, 255, 0.05);
+        var(--borda);
 }
 
 .rodape-final p {
-    max-width: none;
 
-    font-size: 0.78rem;
+    color:
+        #777;
 
-    color: #666;
+    font-size:
+        0.78rem;
 }
 
 
 /* =========================================================
-   ANIMAÇÕES DO JAVASCRIPT
-   ========================================================= */
+   ANIMAÇÕES
+========================================================= */
 
 .animar {
-    opacity: 0;
+
+    opacity:
+        0;
 
     transform:
         translateY(25px);
@@ -1377,7 +1798,9 @@ img {
 }
 
 .animar.mostrar {
-    opacity: 1;
+
+    opacity:
+        1;
 
     transform:
         translateY(0);
@@ -1385,96 +1808,82 @@ img {
 
 
 /* =========================================================
-   RESPONSIVIDADE — TABLET
-   ========================================================= */
+   RESPONSIVIDADE
+========================================================= */
 
 @media (max-width: 1000px) {
 
     .hero-conteudo {
-        grid-template-columns: 1fr;
 
-        gap: 50px;
+        grid-template-columns:
+            1fr;
+
+        gap:
+            50px;
     }
 
     .hero-texto {
-        max-width: 800px;
 
-        text-align: center;
-
-        margin: 0 auto;
-    }
-
-    .hero-texto .tag {
-        margin: 0 auto;
-    }
-
-    .hero p {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-botoes {
-        justify-content: center;
+        max-width:
+            800px;
     }
 
     .hero-card {
-        max-width: 650px;
 
-        width: 100%;
+        max-width:
+            650px;
 
-        margin: 0 auto;
+        width:
+            100%;
+
+        margin:
+            0 auto;
     }
 
     .servicos-grid {
+
         grid-template-columns:
             repeat(2, 1fr);
     }
 
     .projetos-grid {
+
         grid-template-columns:
             repeat(2, 1fr);
     }
 
     .card-projeto:last-child {
+
         grid-column:
             1 / -1;
-
-        width: 100%;
-
-        max-width: 100%;
-
-        margin: 0 auto;
     }
 
     .sobre-conteudo {
-        grid-template-columns: 1fr;
 
-        gap: 50px;
+        grid-template-columns:
+            1fr;
+
+        gap:
+            50px;
     }
 
     .contato-grid {
+
         grid-template-columns:
             repeat(2, 1fr);
     }
 
-    .contato-card:last-child {
-        grid-column:
-            1 / -1;
-
-        max-width: 50%;
-
-        margin: 0 auto;
-    }
 }
 
 
 /* =========================================================
-   RESPONSIVIDADE — CELULAR
-   ========================================================= */
+   TABLET / CELULAR
+========================================================= */
 
 @media (max-width: 700px) {
 
     .container {
+
         width:
             min(
                 calc(100% - 28px),
@@ -1483,222 +1892,229 @@ img {
     }
 
     .cabecalho .container {
-        min-height: 68px;
+
+        min-height:
+            68px;
     }
 
     .menu {
-        display: none;
+
+        display:
+            none;
     }
 
     .hero {
+
         padding:
-            120px 0
-            70px;
+            125px 0 70px;
     }
 
     .hero h1 {
-        font-size: 2.65rem;
 
-        letter-spacing: -1.8px;
+        font-size:
+            clamp(
+                2.35rem,
+                12vw,
+                3.6rem
+            );
+
+        letter-spacing:
+            -2px;
     }
 
-    .hero p {
-        font-size: 0.96rem;
+    .hero-texto > p {
+
+        font-size:
+            1rem;
     }
 
     .hero-botoes {
-        flex-direction: column;
 
-        width: 100%;
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
     }
 
-    .hero-botoes .botao {
-        width: 100%;
+    .botao {
+
+        width:
+            100%;
     }
 
     .hero-card {
-        padding: 20px;
+
+        transform:
+            none;
     }
 
     .codigo {
-        font-size: 0.82rem;
+
+        padding:
+            25px 20px 30px;
+
+        font-size:
+            0.85rem;
+
+        overflow-x:
+            auto;
     }
 
     .secao {
+
         padding:
-            75px 0;
+            80px 0;
     }
 
     .titulo-secao {
-        margin-bottom: 35px;
-    }
 
-    .titulo-secao h2 {
-        font-size: 2rem;
+        margin-bottom:
+            40px;
     }
 
     .servicos-grid {
-        grid-template-columns: 1fr;
-    }
 
-    .card-servico {
-        min-height: auto;
+        grid-template-columns:
+            1fr;
     }
-
-    /* PROJETOS NO CELULAR */
 
     .projetos-grid {
-        grid-template-columns: 1fr;
 
-        gap: 20px;
+        grid-template-columns:
+            1fr;
     }
 
-    .card-projeto,
     .card-projeto:last-child {
-        width: 100%;
 
-        max-width: 100%;
-
-        margin: 0;
+        grid-column:
+            auto;
     }
 
     .projeto-imagem {
-        height: 190px;
+
+        height:
+            190px;
     }
 
-    .projeto-conteudo {
-        padding: 23px;
-    }
+    .sobre-texto h2 {
 
-    .projeto-conteudo h3 {
-        font-size: 1.25rem;
-    }
-
-    .sobre-conteudo {
-        gap: 35px;
-    }
-
-    .destaque {
-        padding: 18px;
-
-        gap: 15px;
+        font-size:
+            2rem;
     }
 
     .cta {
+
         padding:
             60px 0;
     }
 
     .cta-conteudo {
-        flex-direction: column;
 
-        align-items: flex-start;
+        flex-direction:
+            column;
 
-        gap: 25px;
+        align-items:
+            flex-start;
     }
 
-    .cta .botao {
-        width: 100%;
+    .cta-conteudo .botao {
+
+        width:
+            auto;
     }
 
     .contato-grid {
-        grid-template-columns: 1fr;
-    }
 
-    .contato-card,
-    .contato-card:last-child {
-        grid-column: auto;
-
-        width: 100%;
-
-        max-width: 100%;
-
-        margin: 0;
-    }
-
-    .contato-card {
-        padding: 20px;
-    }
-
-    .contato-icone {
-        width: 52px;
-        height: 52px;
-
-        font-size: 1.5rem;
+        grid-template-columns:
+            1fr;
     }
 
     .rodape-conteudo {
-        flex-direction: column;
 
-        gap: 30px;
+        flex-direction:
+            column;
+
+        padding:
+            45px 0;
     }
 
-    .rodape-links {
-        gap: 15px;
-    }
 }
 
 
 /* =========================================================
    CELULARES PEQUENOS
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 420px) {
 
-    .container {
-        width:
-            calc(100% - 22px);
-    }
-
     .logo {
-        font-size: 1.1rem;
-    }
 
-    .logo span {
-        padding: 5px 8px;
+        font-size:
+            1rem;
     }
 
     .hero {
-        padding:
-            105px 0
-            60px;
+
+        padding-top:
+            110px;
     }
 
     .hero h1 {
-        font-size: 2.25rem;
+
+        font-size:
+            2.2rem;
     }
 
-    .hero-card {
-        padding: 17px;
+    .tag {
+
+        font-size:
+            0.68rem;
+
+        letter-spacing:
+            1px;
     }
 
-    .codigo {
-        font-size: 0.72rem;
-    }
+    .titulo-secao h2 {
 
-    .codigo-recuo {
-        padding-left: 15px;
-    }
-
-    .projeto-imagem {
-        height: 170px;
+        font-size:
+            1.8rem;
     }
 
     .projeto-conteudo {
-        padding: 20px;
+
+        padding:
+            22px;
     }
 
-    .projeto-conteudo h3 {
-        font-size: 1.18rem;
+    .projeto-imagem {
+
+        height:
+            175px;
     }
 
     .contato-card {
-        gap: 13px;
 
-        padding: 17px;
+        padding:
+            20px;
+
+        gap:
+            13px;
     }
 
-    .contato-card h3 {
-        font-size: 0.92rem;
+    .contato-icone {
+
+        width:
+            45px;
+
+        height:
+            45px;
     }
+
+    .cta-conteudo .botao {
+
+        width:
+            100%;
+    }
+
 }
