@@ -147,6 +147,10 @@ h1, h2, h3, p { margin-top: 0; }
 .visual-shape { position: absolute; top: 46px; right: 22px; color: rgba(255, 255, 255, .25); font-size: 76px; font-weight: 300; line-height: 1; }
 .visual-visit { color: rgba(255, 255, 255, .76); font-size: 7px; }
 .visual-food, .visual-bakery, .visual-tech, .visual-photo, .visual-climate, .visual-market, .visual-butcher, .visual-fashion, .visual-pet, .visual-dental, .visual-notes { background: linear-gradient(135deg,#17110d,#4f2814 65%,#a64b13); }
+.visual-domjuan { background: linear-gradient(135deg,#111,#35190c 58%,#ff7518); }
+.project-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 7px; }
+.project-actions a { display: inline-flex; min-height: 32px; align-items: center; gap: 4px; padding: 0 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--lime); font-size: 9px; font-weight: 800; transition: color .2s ease, background .2s ease, border-color .2s ease; }
+.project-actions a:hover { border-color: var(--lime); background: var(--lime); color: var(--night); }
 .project-info { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 2px 3px; }
 .project-type { display: block; margin-bottom: 5px; color: #8e9ca4; font-size: 8px; font-weight: 800; letter-spacing: .14em; }
 .project-info h3 { margin: 0; color: #eff3f1; font-size: 13px; font-weight: 700; letter-spacing: -.025em; line-height: 1.35; }
