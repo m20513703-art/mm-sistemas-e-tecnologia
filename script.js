@@ -1,325 +1,139 @@
 "use strict";
 
-// =========================================================
-// SCRIPT PRINCIPAL
-// MM SISTEMAS & TECNOLOGIA
-// =========================================================
-
-const WHATSAPP = "5519981123401";
-
-const INSTAGRAM =
-    "https://www.instagram.com/mmsistemasetecnologia/";
-
-// =========================================================
-// MENSAGENS DO WHATSAPP
-// =========================================================
-
-const MENSAGENS = {
-
-    contato:
-        "Olá! Vi a MM Sistemas & Tecnologia e gostaria de saber mais sobre os serviços.",
-
-    orcamento:
-        "Olá! Vi a MM Sistemas & Tecnologia e gostaria de solicitar um orçamento para um projeto."
-
+const WHATSAPP_NUMBER = "5519981123401";
+const WHATSAPP_MESSAGES = {
+  contato: "Olá! Conheci a MM Sistemas & Tecnologia pelo site e gostaria de saber mais.",
+  orcamento: "Olá! Conheci a MM Sistemas & Tecnologia pelo site e gostaria de conversar sobre um projeto."
 };
 
-
-// =========================================================
-// ABRIR WHATSAPP
-// =========================================================
-
-function abrirWhatsApp(tipo = "contato") {
-
-    const mensagem =
-        MENSAGENS[tipo] || MENSAGENS.contato;
-
-    const url =
-        `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
-
-    window.open(url, "_blank");
+function whatsappUrl(message) {
+  const url = new URL(`https://wa.me/${WHATSAPP_NUMBER}`);
+  url.searchParams.set("text", message);
+  return url.toString();
 }
 
-
-// =========================================================
-// ANO AUTOMÁTICO DO RODAPÉ
-// =========================================================
-
-function atualizarAno() {
-
-    const elemento =
-        document.getElementById("anoAtual");
-
-    if (elemento) {
-
-        elemento.textContent =
-            new Date().getFullYear();
-
-    }
-
+function configureWhatsAppLinks() {
+  document.querySelectorAll("[data-whatsapp]").forEach((link) => {
+    const kind = link.dataset.whatsapp || "contato";
+    link.href = whatsappUrl(WHATSAPP_MESSAGES[kind] || WHATSAPP_MESSAGES.contato);
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+  });
 }
 
+function configureMobileMenu() {
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".site-nav");
+  if (!toggle || !nav) return;
 
-// =========================================================
-// BOTÕES DO WHATSAPP
-// =========================================================
+  const closeMenu = () => {
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Abrir menu");
+    nav.classList.remove("is-open");
+    document.body.classList.remove("menu-open");
+  };
 
-function configurarWhatsApp() {
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+    toggle.setAttribute("aria-label", isOpen ? "Abrir menu" : "Fechar menu");
+    nav.classList.toggle("is-open", !isOpen);
+    document.body.classList.toggle("menu-open", !isOpen);
+  });
 
-    const botoes =
-        document.querySelectorAll("[data-whatsapp]");
+  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 680) closeMenu();
+  });
+}
 
-    botoes.forEach(botao => {
+function configureHeader() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  const update = () => header.classList.toggle("scrolled", window.scrollY > 12);
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+}
 
-        botao.addEventListener(
-            "click",
-            function (evento) {
+function configureProjectFilters() {
+  const buttons = document.querySelectorAll(".filter-button");
+  const cards = document.querySelectorAll(".project-card");
+  if (!buttons.length || !cards.length) return;
 
-                evento.preventDefault();
-
-                const tipo =
-                    this.dataset.whatsapp || "contato";
-
-                abrirWhatsApp(tipo);
-
-            }
-        );
-
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.filter;
+      buttons.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+      cards.forEach((card) => {
+        const categories = (card.dataset.category || "").split(/\s+/);
+        card.classList.toggle("is-hidden", filter !== "todos" && !categories.includes(filter));
+      });
     });
-
+  });
 }
 
+function configureCommentForm() {
+  const form = document.querySelector("#comment-form");
+  if (!form) return;
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const name = form.elements.name.value.trim();
+    const comment = form.elements.comment.value.trim();
+    const consent = form.elements.publicationConsent.checked;
+    if (!name || !comment) return;
 
-// =========================================================
-// NAVEGAÇÃO SUAVE
-// =========================================================
+    const publicationText = consent
+      ? "A pessoa autoriza que o comentário seja avaliado para possível publicação no site."
+      : "A pessoa envia como sugestão privada e não autoriza publicação no site.";
+    const message = [
+      "Olá! Quero enviar um comentário sobre a MM Sistemas & Tecnologia.",
+      "",
+      `Nome: ${name}`,
+      `Comentário: ${comment}`,
+      "",
+      publicationText
+    ].join("\n");
+    window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
+  });
+}
 
-function configurarNavegacao() {
+function configureRevealAnimations() {
+  const items = document.querySelectorAll(".reveal");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    items.forEach((item) => item.classList.add("is-visible"));
+    return;
+  }
 
-    const links =
-        document.querySelectorAll('a[href^="#"]');
-
-    links.forEach(link => {
-
-        link.addEventListener(
-            "click",
-            function (evento) {
-
-                const destino =
-                    this.getAttribute("href");
-
-                if (
-                    !destino ||
-                    destino === "#" ||
-                    this.hasAttribute("data-whatsapp")
-                ) {
-                    return;
-                }
-
-                const elemento =
-                    document.querySelector(destino);
-
-                if (!elemento) {
-                    return;
-                }
-
-                evento.preventDefault();
-
-                elemento.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
-        );
-
+  const observer = new IntersectionObserver((entries, currentObserver) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        currentObserver.unobserve(entry.target);
+      }
     });
-
+  }, { threshold: 0.12 });
+  items.forEach((item) => observer.observe(item));
 }
 
-
-// =========================================================
-// ANIMAÇÃO DOS ELEMENTOS
-// =========================================================
-
-function configurarAnimacoes() {
-
-    const elementos =
-        document.querySelectorAll(
-            ".card-servico, .card-projeto, .destaque, .contato-card"
-        );
-
-    if (!("IntersectionObserver" in window)) {
-
-        elementos.forEach(elemento => {
-
-            elemento.classList.add("mostrar");
-
-        });
-
-        return;
-    }
-
-    const observador =
-        new IntersectionObserver(
-            (entradas, observer) => {
-
-                entradas.forEach(entrada => {
-
-                    if (entrada.isIntersecting) {
-
-                        entrada.target.classList.add(
-                            "mostrar"
-                        );
-
-                        observer.unobserve(
-                            entrada.target
-                        );
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.15
-            }
-        );
-
-    elementos.forEach(elemento => {
-
-        elemento.classList.add("animar");
-
-        observador.observe(elemento);
-
-    });
-
+function setCurrentYear() {
+  const year = document.getElementById("ano-atual");
+  if (year) year.textContent = new Date().getFullYear();
 }
 
-
-// =========================================================
-// EFEITO NO CABEÇALHO AO ROLAR
-// =========================================================
-
-function configurarCabecalho() {
-
-    const cabecalho =
-        document.querySelector(".cabecalho");
-
-    if (!cabecalho) {
-        return;
-    }
-
-    function verificarScroll() {
-
-        if (window.scrollY > 30) {
-
-            cabecalho.classList.add("rolando");
-
-        } else {
-
-            cabecalho.classList.remove("rolando");
-
-        }
-
-    }
-
-    window.addEventListener(
-        "scroll",
-        verificarScroll
-    );
-
-    verificarScroll();
-
-}
-
-
-// =========================================================
-// BOTÃO VER PROJETOS
-// =========================================================
-
-function configurarProjetos() {
-
-    const botoes =
-        document.querySelectorAll(".botao-projeto");
-
-    botoes.forEach(botao => {
-
-        botao.addEventListener(
-            "click",
-            function () {
-
-                if (
-                    this.classList.contains("desativado")
-                ) {
-
-                    return;
-
-                }
-
-            }
-        );
-
-    });
-
-}
-
-
-// =========================================================
-// LOGO → VOLTAR PARA O TOPO
-// =========================================================
-
-function configurarLogo() {
-
-    const logos =
-        document.querySelectorAll(".logo");
-
-    logos.forEach(logo => {
-
-        logo.addEventListener(
-            "click",
-            function (evento) {
-
-                evento.preventDefault();
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
-            }
-        );
-
-    });
-
-}
-
-
-// =========================================================
-// INICIALIZAÇÃO
-// =========================================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        atualizarAno();
-
-        configurarWhatsApp();
-
-        configurarNavegacao();
-
-        configurarAnimacoes();
-
-        configurarCabecalho();
-
-        configurarProjetos();
-
-        configurarLogo();
-
-        console.log(
-            "MM Sistemas & Tecnologia — Landing Page carregada."
-        );
-
-    }
-);
+document.addEventListener("DOMContentLoaded", () => {
+  configureWhatsAppLinks();
+  configureMobileMenu();
+  configureHeader();
+  configureProjectFilters();
+  configureCommentForm();
+  configureRevealAnimations();
+  setCurrentYear();
+});
